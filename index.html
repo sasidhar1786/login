@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #todo-list {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="todo-list">
+  <h2>Todo List</h2>
+  <input type="text" id="taskInput" placeholder="New task...">
+  <button onclick="addTask()">Add Task</button>
+  <ul id="tasks"></ul>
+</div>
+
+<script>
+  function addTask() {
+    // Get the task input value
+    var taskInput = document.getElementById("taskInput");
+    var taskText = taskInput.value.trim();
+
+    // If the input is not empty, add a new task
+    if (taskText !== "") {
+      // Create a new list item
+      var li = document.createElement("li");
+
+      // Create a text node with the task text
+      var textNode = document.createTextNode(taskText);
+
+      // Create a delete button
+      var deleteButton = document.createElement("button");
+      deleteButton.innerHTML = "&#215;";
+      deleteButton.onclick = function () {
+        li.remove();
+      };
+
+      // Append the text node and delete button to the list item
+      li.appendChild(textNode);
+      li.appendChild(deleteButton);
+
+      // Append the list item to the tasks ul
+      document.getElementById("tasks").appendChild(li);
+
+      // Clear the input field
+      taskInput.value = "";
+    }
+  }
+</script>
+
+</body>
+</html>
